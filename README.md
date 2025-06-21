@@ -1,48 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 健康管理AIエージェント
 
-## Setting Environment
+食事内容や運動習慣を入力すると、AIが健康アドバイスや改善プランを提案してくれるWebアプリケーションです。
+
+## 機能
+
+- 💬 **チャット機能**: AIエージェントと継続的な対話が可能
+- 📋 **健康プラン作成**: 食事、運動、睡眠、健康の悩みを入力して総合的なアドバイスを取得
+- 🤖 **AI生成提案**: 会話に基づいた関連する相談内容を自動提案
+- 📱 **レスポンシブデザイン**: モバイルとデスクトップの両方に対応
+
+## 技術スタック
+
+- **フレームワーク**: Next.js 15.3.4
+- **AI**: Mastra + OpenAI GPT-4o-mini
+- **UI**: React 19 + Tailwind CSS
+- **マークダウン**: react-markdown
+- **言語**: TypeScript
+
+## セットアップ
+
+### 1. リポジトリをクローン
 
 ```bash
-touch .env.development
+git clone <repository-url>
+cd ai-agent-sample
 ```
 
-Then add your OpenAI API key to the `.env.development` file:
+### 2. 依存関係をインストール
+
+```bash
+npm install
+# または
+yarn install
+```
+
+### 3. 環境変数を設定
+
+`.env.example`をコピーして`.env.development`を作成：
+
+```bash
+cp .env.example .env.development
+```
+
+`.env.development`ファイルにOpenAI APIキーを設定：
 
 ```plaintext
-OPENAI_API_KEY=your_openai_api_key
+OPENAI_API_KEY=your_openai_api_key_here
 ```
 
-## Getting Started
+OpenAI APIキーは[こちら](https://platform.openai.com/api-keys)から取得できます。
 
-First, run the development server:
+### 4. 開発サーバーを起動
 
 ```bash
 npm run dev
-# or
+# または
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[http://localhost:3000](http://localhost:3000)でアプリケーションにアクセスできます。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 使用方法
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **チャットモード**: AIエージェントと自由に健康について相談
+2. **プランモード**: 構造化されたフォームで健康状況を入力し、詳細なアドバイスを取得
 
-## Learn More
+## プロジェクト構造
 
-To learn more about Next.js, take a look at the following resources:
+```
+├── src/
+│   └── app/
+│       ├── components/
+│       │   ├── Chat.tsx      # チャット機能
+│       │   └── Plan.tsx      # 健康プラン作成
+│       ├── action.ts         # サーバーアクション
+│       ├── layout.tsx        # レイアウト
+│       └── page.tsx          # メインページ
+├── mastra/
+│   ├── agents/
+│   │   └── healthAgent.ts    # 健康管理AIエージェント
+│   └── index.ts              # Mastra設定
+└── public/                   # 静的ファイル
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## カスタマイズ
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `mastra/agents/healthAgent.ts`: AIエージェントの性格や専門知識を調整
+- `src/app/action.ts`: 健康プランの出力形式やプロンプトを変更
+- `src/app/components/`: UIコンポーネントのデザインを変更
 
-## Deploy on Vercel
+## ライセンス
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+MIT License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 貢献
+
+プルリクエストやイシューの報告を歓迎します！
